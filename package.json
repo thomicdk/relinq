@@ -1,0 +1,32 @@
+{
+  "name": "relinq",
+  "version": "0.1.0",
+  "description": "REimplementation of LINQ for JavaScript - built with TypeScript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "watch": "tsc -w"
+  },
+  "keywords": [
+    "TypeScript",
+    "LINQ",
+    "query"
+  ],
+  "bugs": {
+    "url": "https://github.com/thomicdk/relinq/issues"
+  },
+  "author": "Michael Thomassen",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/jest": "^25.1.2",
+    "babel-jest": "^25.1.0",
+    "jest": "^25.1.0",
+    "typescript": "^3.7.5"
+  }
+}
