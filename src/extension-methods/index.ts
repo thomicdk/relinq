@@ -19,6 +19,7 @@ import './single';
 import './single-or-default';
 import './skip';
 import './take';
+import './take-while';
 import './to-array';
 import './to-dictionary';
 import './to-lookup';
