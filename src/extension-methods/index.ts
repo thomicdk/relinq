@@ -18,6 +18,7 @@ import './select-many';
 import './single';
 import './single-or-default';
 import './skip';
+import './skip-while';
 import './take';
 import './to-array';
 import './to-dictionary';
