@@ -19,6 +19,7 @@ import './single';
 import './single-or-default';
 import './skip';
 import './skip-while';
+import './sum';
 import './take';
 import './take-while';
 import './to-array';
