@@ -58,6 +58,9 @@ export class Lookup<TKey, TElement> extends Enumerable<Grouping<TKey, TElement>>
     }();
   }
 
+  toString() {
+    return 'Lookup';
+  }
 
   /** @internal */
   private serializeKey(key: TKey): string {

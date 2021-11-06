@@ -53,4 +53,8 @@ export class OrderedEnumerable<TElement> extends Enumerable<TElement> {
     }
     return this.createOrderedEnumerable<TKey>(keySelector, comparer, true);
   }
+
+  toString() {
+    return 'OrderedEnumerable';
+  }
 }

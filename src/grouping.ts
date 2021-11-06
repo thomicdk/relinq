@@ -15,4 +15,8 @@ export class Grouping<TKey, TElement> extends Enumerable<TElement> {
   get key(): TKey {
     return this._key;
   }
+
+  toString() {
+    return 'Grouping';
+  }
 }
