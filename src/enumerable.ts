@@ -12,7 +12,16 @@ export class Enumerable<TSource> implements Iterable<TSource>
     return this.deferredIterable();
   }
 
-  static asEnumerable<T>(source: Iterable<T>): Enumerable<T> {
+  /** @internal */
+  toJSON() {
+    return [...this.deferredIterable()];
+  }
+
+  toString() {
+    return 'Enumerable';
+  }
+
+  static from<T>(source: Iterable<T>): Enumerable<T> {
     const deferredIterable = createDeferredIterable(source);
     return new Enumerable<T>(deferredIterable);
   }

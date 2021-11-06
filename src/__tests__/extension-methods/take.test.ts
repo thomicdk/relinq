@@ -28,7 +28,7 @@ describe("take", function() {
   });
 
   test('Lazy iteration', () => {
-    const source = Enumerable.asEnumerable([{ val: 1 }, { val: 2 }, <any>undefined])
+    const source = Enumerable.from([{ val: 1 }, { val: 2 }, <any>undefined])
 
     // If we proceed too far, we get:
     // TypeError: Cannot read property 'val' of undefined

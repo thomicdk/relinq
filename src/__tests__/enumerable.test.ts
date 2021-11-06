@@ -48,8 +48,8 @@ import { Enumerable } from "../..";
     });
 
     test('String repeat', () => {
-      const numbers = "hey";
-      const actual = Enumerable.repeat(numbers, 2);
+      const greeting = "hey";
+      const actual = Enumerable.repeat(greeting, 2);
       expect(actual).toGenerate(["hey","hey"]);
     });
 
@@ -66,6 +66,16 @@ import { Enumerable } from "../..";
 
       expect(array2).toGenerate([3, 3, 3, 3]);
     });
+  });
+
+
+  describe("toJSON()", () => {
+
+    test('Simple range', () => {
+      const actual = JSON.stringify(Enumerable.from([1,2,3,4]));
+      expect(actual).toBe("[1,2,3,4]");
+    });
+
   });
 });
 
