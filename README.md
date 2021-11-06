@@ -1,5 +1,11 @@
 # RELINQ
 
+## Feature highlights
+
+* Familiar LINQ API 
+* Full type support
+* No dependencies
+* Deferred execution
 
 ## How to use
 
@@ -21,3 +27,44 @@ Enumerable
   .orderBy(p => p.married)
   .thenByDescending(p => p.age);
 ```
+
+## API
+
+### Methods
+
+* `.aggregate()`
+* `.all()`
+* `.any()`
+* `.concat()`
+* `.count()`
+* `.distinct()`
+* `.except()`
+* `.first()`
+* `.firstOrDefault()`
+* `.groupBy()`
+* `.intersect()`
+* `.last()`
+* `.lastOrDefault()`
+* `.orderBy()`
+* `.reverse()`
+* `.select()`
+* `.selectMany()`
+* `.single()`
+* `.singleOrDefault()`
+* `.skip()`
+* `.skipWhile()`
+* `.sum()`
+* `.take()`
+* `.takeWhile()`
+* `.toArray()`
+* `.toDictionary()`
+* `.toLookup()`
+* `.union()`
+* `.where()`
+
+### Static
+
+* `Enumerable.empty()`
+* `Enumerable.from()`
+* `Enumerable.range()`
+* `Enumerable.repeat()`
