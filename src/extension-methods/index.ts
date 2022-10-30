@@ -11,6 +11,8 @@ import './group-by';
 import './intersect';
 import './last';
 import './last-or-default';
+import './max';
+import './min';
 import './order-by';
 import './reverse';
 import './select';

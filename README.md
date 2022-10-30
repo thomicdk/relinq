@@ -45,6 +45,8 @@ Enumerable
 * `.intersect()`
 * `.last()`
 * `.lastOrDefault()`
+* `.max()`
+* `.min()`
 * `.orderBy()`
 * `.reverse()`
 * `.select()`
