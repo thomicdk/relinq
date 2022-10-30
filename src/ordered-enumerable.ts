@@ -14,9 +14,6 @@ export class OrderedEnumerable<TElement> extends Enumerable<TElement> {
 
   /** @internal */
   createOrderedEnumerable<TKey>(keySelector: (element: TElement) => TKey, comparer: IComparer<TKey>, descending: boolean): OrderedEnumerable<TElement> {
-    if (keySelector == null) {
-        throw new Error("keySelector is null");
-    }
     let secondaryComparer: IComparer<TElement> = new ProjectionComparer<TElement, TKey> (keySelector, comparer);
     if (descending) {
         secondaryComparer = new ReverseComparer<TElement>(secondaryComparer);
@@ -33,10 +30,6 @@ export class OrderedEnumerable<TElement> extends Enumerable<TElement> {
   }
 
   thenBy<TKey>(keySelector: (item: TElement) => TKey, comparer?: IComparer<TKey>): OrderedEnumerable<TElement> {
-    if (keySelector == null) {
-        throw new Error("keySelector is null");
-    }
-
     if (!comparer) {
       comparer = defaultComparerFactory(false);
     }
@@ -44,10 +37,6 @@ export class OrderedEnumerable<TElement> extends Enumerable<TElement> {
   }
 
   thenByDescending<TKey>(keySelector: (item: TElement) => TKey, comparer?: IComparer<TKey>): OrderedEnumerable<TElement> {
-    if (keySelector == null) {
-        throw new Error("keySelector is null");
-    }
-
     if (!comparer) {
       comparer = defaultComparerFactory(false);
     }

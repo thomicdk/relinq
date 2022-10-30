@@ -7,6 +7,7 @@ declare module '../enumerable' {
   }
 }
 
+export function sum<TSource extends number>(this: Enumerable<TSource>): number
 export function sum<TSource extends number>(this: Enumerable<TSource>, selector?: (item: TSource) => number): number {
   if (!selector) {
     selector = (item: any) => item;

@@ -2,6 +2,7 @@ import { Enumerable } from "../enumerable";
 
 declare module '../enumerable' {
   interface Enumerable<TSource> {
+    aggregate<TAccumulate, TResult = TAccumulate>(seed: TAccumulate, func: (accumulate: TAccumulate, item: TSource) => TAccumulate): TResult;
     aggregate<TAccumulate, TResult>(seed: TAccumulate, func: (accumulate: TAccumulate, item: TSource) => TAccumulate, resultSelector?: (accumulate: TAccumulate) => TResult): TResult;
   }
 }
@@ -9,7 +10,7 @@ declare module '../enumerable' {
 function defaultResultSelector<TSource>(item: TSource): TSource {
   return item;
 }
-
+export function aggregate<TSource, TAccumulate, TResult = TAccumulate>(this: Enumerable<TSource>, seed: TAccumulate, func: (accumulate: TAccumulate, item: TSource) => TAccumulate): TResult
 export function aggregate<TSource, TAccumulate, TResult>(
   this: Enumerable<TSource>,
   seed: TAccumulate,

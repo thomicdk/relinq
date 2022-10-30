@@ -2,10 +2,12 @@ import { Enumerable } from "../enumerable";
 
 declare module '../enumerable' {
   interface Enumerable<TSource> {
+    last(): TSource;
     last(predicate?: (item: TSource) => boolean): TSource;
   }
 }
 
+export function last<TSource>(this: Enumerable<TSource>): TSource
 export function last<TSource>(this: Enumerable<TSource>, predicate?: (item: TSource) => boolean): TSource {
   if (predicate) {
     let result: TSource;

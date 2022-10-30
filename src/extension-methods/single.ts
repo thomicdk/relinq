@@ -2,10 +2,12 @@ import { Enumerable } from "../enumerable";
 
 declare module '../enumerable' {
   interface Enumerable<TSource> {
+    single(): TSource;
     single(predicate?: (item: TSource) => boolean): TSource;
   }
 }
 
+export function single<TSource>(this: Enumerable<TSource>): TSource
 export function single<TSource>(this: Enumerable<TSource>, predicate?: (item: TSource) => boolean): TSource {
   if (predicate) {
     let foundAny = false;

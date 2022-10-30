@@ -5,16 +5,15 @@ import { IComparer, defaultComparerFactory, ProjectionComparer, ReverseComparer 
 
 declare module '../enumerable' {
   interface Enumerable<TSource> {
+    orderBy<TKey>(keySelector: (item: TSource) => TKey): OrderedEnumerable<TSource>;
     orderBy<TKey>(keySelector: (item: TSource) => TKey, comparer?: IComparer<TKey>): OrderedEnumerable<TSource>;
+    orderByDescending<TKey>(keySelector: (item: TSource) => TKey): OrderedEnumerable<TSource>;
     orderByDescending<TKey>(keySelector: (item: TSource) => TKey, comparer?: IComparer<TKey>): OrderedEnumerable<TSource>;
   }
 }
 
+export function orderBy<TSource, TKey>(this: Enumerable<TSource>, keySelector: (item: TSource) => TKey): OrderedEnumerable<TSource>
 export function orderBy<TSource, TKey>(this: Enumerable<TSource>, keySelector: (item: TSource) => TKey, comparer?: IComparer<TKey>): OrderedEnumerable<TSource> {
-  if (keySelector == null) {
-    throw new Error("keySelector is null");
-  }
-
   if (!comparer) {
     comparer = defaultComparerFactory(false);
   }
@@ -22,11 +21,8 @@ export function orderBy<TSource, TKey>(this: Enumerable<TSource>, keySelector: (
   return orderedEnumerable;
 }
 
+export function orderByDescending<TSource, TKey>(this: Enumerable<TSource>, keySelector: (item: TSource) => TKey): OrderedEnumerable<TSource>
 export function orderByDescending<TSource, TKey>(this: Enumerable<TSource>, keySelector: (item: TSource) => TKey, comparer?: IComparer<TKey>): OrderedEnumerable<TSource> {
-  if (keySelector == null) {
-    throw new Error("keySelector is null");
-  }
-
   if (!comparer) {
     comparer = defaultComparerFactory(false);
   }

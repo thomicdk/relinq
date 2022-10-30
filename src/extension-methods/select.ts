@@ -6,7 +6,7 @@ declare module '../enumerable' {
   }
 }
 
-export function select<TSource, TResult>(this: Enumerable<TSource>, selector: (item: TSource, idx: number) => TResult) {
+export function select<TSource, TResult>(this: Enumerable<TSource>, selector: (item: TSource, idx: number) => TResult): Enumerable<TResult> {
   const self = this;
   return new Enumerable(function*() {
     let index = 0;

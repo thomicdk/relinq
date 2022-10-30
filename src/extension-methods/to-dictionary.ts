@@ -3,6 +3,7 @@ import { Dictionary } from "../dictionary";
 
 declare module '../enumerable' {
   interface Enumerable<TSource> {
+    toDictionary<TKey, TElement>(keySelector: (item: TSource) => TKey): Dictionary<TKey, TElement>;
     toDictionary<TKey, TElement>(keySelector: (item: TSource) => TKey, elementSelector?: (item: TSource) => TElement): Dictionary<TKey, TElement>;
   }
 }
@@ -11,6 +12,7 @@ function defaultElementSelector<TSource>(item: TSource): TSource {
   return item;
 }
 
+export function toDictionary<TSource, TKey, TElement>(this: Enumerable<TSource>, keySelector: (item: TSource) => TKey): Dictionary<TKey, TElement>
 export function toDictionary<TSource, TKey, TElement>(this: Enumerable<TSource>, keySelector: (item: TSource) => TKey, elementSelector?: (item: TSource) => TElement): Dictionary<TKey, TElement> {
   const dict = new Dictionary<TKey, TElement>();
 
