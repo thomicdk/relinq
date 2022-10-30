@@ -9,6 +9,13 @@ describe("aggregate", function() {
     expect(sum).toBe(15);
   });
 
+  test('Sum as string (result selector)', () => {
+    const numbers = asEnumerable([1, 2, 3, 4, 5]);
+    const sum = numbers.aggregate(0, (acc, x) => acc + x, (acc) => acc.toString());
+
+    expect(sum).toBe("15");
+  });
+
   test('Empty sequence returns seed', () => {
     const source = asEnumerable([]);
     const result = source.aggregate(7, (acc, x) => x);

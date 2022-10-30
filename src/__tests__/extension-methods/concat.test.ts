@@ -3,14 +3,14 @@ import { Enumerable } from "../..";
 describe("concat", function() {
 
   test('Empty first source', () => {
-    const first = Enumerable.from([] as number[]);
+    const first = Enumerable.from<number>([]);
     const second = Enumerable.from([2, 5, 9, 0, 5]);
     expect(first.concat(second)).toGenerate([2, 5, 9, 0, 5]);
   });
 
   test('Empty second source', () => {
     const first = Enumerable.from([4, 0, 1, 0, 6]);
-    const second = Enumerable.from([] as number[]);
+    const second = Enumerable.from<number>([]);
     expect(first.concat(second)).toGenerate([4, 0, 1, 0, 6]);
   });
 

@@ -63,7 +63,6 @@ import { Enumerable } from "../..";
       const source = Enumerable.repeat(3, 4);
       const array1 = source.toArray();
       const array2 = source.toArray();
-
       expect(array2).toGenerate([3, 3, 3, 3]);
     });
   });

@@ -3,14 +3,14 @@ import { Enumerable } from "../..";
 describe("intersect", function() {
 
   test('Empty first source', () => {
-    const first = Enumerable.from([] as number[]);
+    const first = Enumerable.from<number>([]);
     const second = Enumerable.from([2, 5, 9, 0, 5]);
     expect(first.intersect(second)).toGenerate([]);
   });
 
   test('Empty second source', () => {
     const first = Enumerable.from([4, 0, 1, 0, 6]);
-    const second = Enumerable.from([] as number[]);
+    const second = Enumerable.from([]);
     expect(first.intersect(second)).toGenerate([]);
   });
 
