@@ -2,11 +2,11 @@ import { Enumerable } from "../enumerable";
 
 declare module '../enumerable' {
   interface Enumerable<TSource> {
-    where(predicate: (item: TSource, idx?: number) => boolean): Enumerable<TSource>;
+    where(predicate: (item: TSource, idx: number) => boolean): Enumerable<TSource>;
   }
 }
 
-export function where<TSource>(this: Enumerable<TSource>, predicate: (item: TSource, idx?: number) => boolean): Enumerable<TSource> {
+export function where<TSource>(this: Enumerable<TSource>, predicate: (item: TSource, idx: number) => boolean): Enumerable<TSource> {
   const self = this;
 
   return new Enumerable(function*() {

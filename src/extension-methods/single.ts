@@ -24,7 +24,7 @@ export function single<TSource>(this: Enumerable<TSource>, predicate?: (item: TS
     if (!foundAny) {
       throw new Error("No items matched the predicate");
     }
-    return result as TSource;
+    return result!;
   } else {
     const iterator = this[Symbol.iterator]();
     const firstResult = iterator.next();

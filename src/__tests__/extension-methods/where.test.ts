@@ -9,6 +9,14 @@ describe("where", function() {
     expect(numbers.where(predicate)).toGenerate([7, 8, 9]);
   });
 
+
+  test('Simple indexer in predicate', () => {
+    const numbers = asEnumerable([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    const predicate = (n: number) => n > 6;
+
+    expect(numbers.where(predicate)).toGenerate([7, 8, 9]);
+  });
+
   test('Indexer in predicate', () => {
     const numbers = asEnumerable([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     const predicate = (n: number, idx: number) => idx < 2;

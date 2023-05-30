@@ -23,9 +23,9 @@ const people = [
 
 Enumerable
   .from(people)
-  .where(p => p.age < 40)
-  .orderBy(p => p.married)
-  .thenByDescending(p => p.age);
+  .where(p => p.married)
+  .orderByDescending(p => p.age);
+  .select(p => `${p.name} (${p.age})`)
 ```
 
 ## API

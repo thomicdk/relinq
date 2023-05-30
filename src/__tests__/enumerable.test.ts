@@ -22,10 +22,10 @@ import { Enumerable } from "../..";
     test('Iterable multiple times', () => {
       const source = Enumerable.range(0, 5);
 
-      const array1 = source.toArray();
-      const array2 = source.toArray();
+      let array = source.toArray();
+      array = source.toArray();
 
-      expect(array2).toGenerate([0, 1, 2, 3, 4]);
+      expect(array).toGenerate([0, 1, 2, 3, 4]);
     });
 
   });

@@ -9,6 +9,10 @@
     "moduleResolution": "node",
     "outDir": "dist",
     "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "stripInternal": true,
     "forceConsistentCasingInFileNames": true
   },
