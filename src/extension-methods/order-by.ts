@@ -6,30 +6,34 @@ import { IComparer, defaultComparerFactory, ProjectionComparer, ReverseComparer 
 declare module '../enumerable' {
   interface Enumerable<TSource> {
     orderBy<TKey>(keySelector: (item: TSource) => TKey): OrderedEnumerable<TSource>;
-    orderBy<TKey>(keySelector: (item: TSource) => TKey, comparer?: IComparer<TKey>): OrderedEnumerable<TSource>;
-    orderByDescending<TKey>(keySelector: (item: TSource) => TKey): OrderedEnumerable<TSource>;
-    orderByDescending<TKey>(keySelector: (item: TSource) => TKey, comparer?: IComparer<TKey>): OrderedEnumerable<TSource>;
+    orderBy<TKey>(keySelector: (item: TSource) => TKey, comparer: IComparer<TKey>): OrderedEnumerable<TSource>;
   }
 }
 
-export function orderBy<TSource, TKey>(this: Enumerable<TSource>, keySelector: (item: TSource) => TKey): OrderedEnumerable<TSource>
-export function orderBy<TSource, TKey>(this: Enumerable<TSource>, keySelector: (item: TSource) => TKey, comparer?: IComparer<TKey>): OrderedEnumerable<TSource> {
-  if (!comparer) {
-    comparer = defaultComparerFactory(false);
-  }
-  const orderedEnumerable = new OrderedEnumerable<TSource>(createDeferredIterable(this), new ProjectionComparer<TSource, TKey>(keySelector, comparer));
-  return orderedEnumerable;
-}
+export function orderBy<TSource, TKey>(
+  this: Enumerable<TSource>, 
+  keySelector: (item: TSource) => TKey
+): OrderedEnumerable<TSource>;
 
-export function orderByDescending<TSource, TKey>(this: Enumerable<TSource>, keySelector: (item: TSource) => TKey): OrderedEnumerable<TSource>
-export function orderByDescending<TSource, TKey>(this: Enumerable<TSource>, keySelector: (item: TSource) => TKey, comparer?: IComparer<TKey>): OrderedEnumerable<TSource> {
+export function orderBy<TSource, TKey>(
+  this: Enumerable<TSource>,
+  keySelector: (item: TSource) => TKey,
+  comparer: IComparer<TKey>
+): OrderedEnumerable<TSource>;
+
+export function orderBy<TSource, TKey>(
+  this: Enumerable<TSource>,
+  keySelector: (item: TSource) => TKey,
+  comparer?: IComparer<TKey>
+): OrderedEnumerable<TSource> {
   if (!comparer) {
     comparer = defaultComparerFactory(false);
   }
-  const sourceComparer = new ReverseComparer(comparer);
-  const orderedEnumerable =  new OrderedEnumerable<TSource>(createDeferredIterable(this), new ProjectionComparer<TSource, TKey>(keySelector, sourceComparer));
+  const orderedEnumerable = new OrderedEnumerable<TSource>(
+    createDeferredIterable(this),
+    new ProjectionComparer<TSource, TKey>(keySelector, comparer)
+  );
   return orderedEnumerable;
 }
 
 Enumerable.prototype.orderBy = orderBy;
-Enumerable.prototype.orderByDescending = orderByDescending;
