@@ -39,6 +39,7 @@ Enumerable
 * `.count()`
 * `.distinct()`
 * `.except()`
+* `.elementAt()`
 * `.first()`
 * `.firstOrDefault()`
 * `.groupBy()`

@@ -4,6 +4,7 @@ import './any';
 import './concat';
 import './count';
 import './distinct';
+import './element-at';
 import './except';
 import './first';
 import './first-or-default';
