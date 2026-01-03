@@ -5,6 +5,7 @@ import './concat';
 import './count';
 import './distinct';
 import './element-at';
+import './element-at-or-default';
 import './except';
 import './first';
 import './first-or-default';
