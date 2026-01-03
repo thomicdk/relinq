@@ -52,6 +52,7 @@ Enumerable
 * `.reverse()`
 * `.select()`
 * `.selectMany()`
+* `.sequenceEqual()`
 * `.single()`
 * `.singleOrDefault()`
 * `.skip()`

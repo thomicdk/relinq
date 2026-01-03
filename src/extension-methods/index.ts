@@ -18,6 +18,7 @@ import './order-by';
 import './reverse';
 import './select';
 import './select-many';
+import './sequence-equal';
 import './single';
 import './single-or-default';
 import './skip';
