@@ -3,14 +3,25 @@ import { Enumerable } from "../enumerable";
 declare module '../enumerable' {
   interface Enumerable<TSource> {
     max(): TSource;
-    max<TResult>(selector?: (item: TSource) => TResult): TResult;
+    max<TResult>(selector: (item: TSource) => TResult): TResult;
   }
 }
 
-export function max<TSource>(this: Enumerable<TSource>): number
-export function max<TSource, TResult>(this: Enumerable<TSource>, selector?: (item: TSource) => TResult): TResult {
+export function max<TSource>(
+  this: Enumerable<TSource>
+): number;
+
+export function max<TSource, TResult>(
+  this: Enumerable<TSource>,
+  selector: (item: TSource) => TResult
+): TResult;
+
+export function max<TSource, TResult>(
+  this: Enumerable<TSource>,
+  selector?: (item: TSource) => TResult
+): TResult {
   if (!selector) {
-    selector = (item: any) => item;
+    selector = (item) => item as unknown as TResult;
   }
   let isEmpty = true;
   const iterator = this[Symbol.iterator]();

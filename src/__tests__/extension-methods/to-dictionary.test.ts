@@ -24,7 +24,7 @@ describe("toDictionary", () => {
     const source = asEnumerable(["alice", "bob", "charlie", "aura"]);
     expect(() =>
       source.toDictionary(x => x[0])
-    ).toThrowError("Key already exists in dictionary");
+    ).toThrow("Key already exists in dictionary");
   });
 
 });

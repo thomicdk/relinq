@@ -6,7 +6,10 @@ declare module '../enumerable' {
   }
 }
 
-export function skip<TSource>(this: Enumerable<TSource>, count: number): Enumerable<TSource> {
+export function skip<TSource>(
+  this: Enumerable<TSource>, 
+  count: number
+): Enumerable<TSource> {
   const self = this;
   return new Enumerable(function*() {
     const iterator = self[Symbol.iterator]();

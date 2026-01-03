@@ -6,7 +6,9 @@ declare module '../enumerable' {
   }
 }
 
-export function distinct<TSource>(this: Enumerable<TSource>): Enumerable<TSource> {
+export function distinct<TSource>(
+  this: Enumerable<TSource>
+): Enumerable<TSource> {
   const self = this;
   return new Enumerable(function*() {
     const seenElements = new Set<TSource>();

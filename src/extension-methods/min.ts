@@ -3,14 +3,25 @@ import { Enumerable } from "../enumerable";
 declare module '../enumerable' {
   interface Enumerable<TSource> {
     min(): TSource;
-    min<TResult>(selector?: (item: TSource) => TResult): TResult;
+    min<TResult>(selector: (item: TSource) => TResult): TResult;
   }
 }
 
-export function min<TSource>(this: Enumerable<TSource>): number
-export function min<TSource, TResult>(this: Enumerable<TSource>, selector?: (item: TSource) => TResult): TResult {
+export function min<TSource>(
+  this: Enumerable<TSource>
+): number;
+
+export function min<TSource, TResult>(
+  this: Enumerable<TSource>,
+  selector: (item: TSource) => TResult
+): TResult;
+
+export function min<TSource, TResult>(
+  this: Enumerable<TSource>,
+  selector?: (item: TSource) => TResult
+): TResult {
   if (!selector) {
-    selector = (item: any) => item;
+    selector = (item) => item as unknown as TResult;
   }
   let isEmpty = true;
   const iterator = this[Symbol.iterator]();

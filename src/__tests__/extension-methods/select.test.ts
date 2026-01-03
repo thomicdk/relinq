@@ -8,6 +8,16 @@ describe("select", function() {
     expect(actual).toGenerate([34, 10, 3]);
   });
 
+  test('Object literal property projection', () => {
+    const sentenceTokens = asEnumerable([
+      { id: 1, value: "I"},
+      { id: 2, value: "am"},
+      { id: 3, value: "a"},
+      { id: 4, value: "sentence"},
+    ]);
+    const actual = sentenceTokens.select(n => n.value);
+    expect(actual).toGenerate(["I", "am", "a", "sentence"]);
+  });
 
   test('Indexer in selector', () => {
     const numbers = asEnumerable([1, 2, 3, 4, 5]);

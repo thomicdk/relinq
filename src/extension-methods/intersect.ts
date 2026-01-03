@@ -6,7 +6,10 @@ declare module '../enumerable' {
   }
 }
 
-export function intersect<TSource>(this: Enumerable<TSource>, second: Enumerable<TSource>): Enumerable<TSource> {
+export function intersect<TSource>(
+  this: Enumerable<TSource>, 
+  second: Enumerable<TSource>
+): Enumerable<TSource> {
   const self = this;
   return new Enumerable(function*() {
     const potentialElements = new Set<TSource>(second);

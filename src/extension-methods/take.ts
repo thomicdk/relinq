@@ -6,7 +6,10 @@ declare module '../enumerable' {
   }
 }
 
-export function take<TSource>(this: Enumerable<TSource>, count: number): Enumerable<TSource> {
+export function take<TSource>(
+  this: Enumerable<TSource>,
+  count: number
+): Enumerable<TSource> {
   const self = this;
   return new Enumerable(function*() {
     let i = 0;
