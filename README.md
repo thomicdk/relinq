@@ -48,6 +48,7 @@ Enumerable
 * `.max()`
 * `.min()`
 * `.orderBy()`
+* `.orderByDescending()`
 * `.reverse()`
 * `.select()`
 * `.selectMany()`
@@ -63,6 +64,7 @@ Enumerable
 * `.toLookup()`
 * `.union()`
 * `.where()`
+* `.zip()`
 
 ### Static
 

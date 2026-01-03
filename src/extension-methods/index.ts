@@ -30,3 +30,4 @@ import './to-dictionary';
 import './to-lookup';
 import './union';
 import './where';
+import './zip';
