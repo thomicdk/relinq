@@ -6,7 +6,10 @@ declare module '../enumerable' {
   }
 }
 
-export function union<TSource>(this: Enumerable<TSource>, second: Enumerable<TSource>): Enumerable<TSource> {
+export function union<TSource>(
+  this: Enumerable<TSource>,
+  second: Enumerable<TSource>
+): Enumerable<TSource> {
   const self = this;
   return new Enumerable(function*() {
     const seenElements = new Set<TSource>();

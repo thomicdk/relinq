@@ -1,6 +1,12 @@
-import { Enumerable } from "../..";
+import { Enumerable } from "../";
 
  describe("Enumerable", function() {
+
+  describe("empty()", () => {
+      const actual = Enumerable.empty<number>();
+      const expected: string[] = [];
+      expect(actual).toGenerate(expected);
+  });
 
   describe("range()", () => {
 
@@ -30,7 +36,7 @@ import { Enumerable } from "../..";
 
   });
 
-  describe("repeat", () => {
+  describe("repeat()", () => {
 
     test('Empty repeat', () => {
       const actual = Enumerable.repeat("EMPTY", 0);

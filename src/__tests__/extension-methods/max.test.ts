@@ -4,7 +4,7 @@ describe("max", function() {
 
   test('Max of an empty sequence', () => {
     const empty = Enumerable.from([]);
-    expect(() => empty.max()).toThrowError("Sequence is empty");
+    expect(() => empty.max()).toThrow("Sequence is empty");
   });
 
   test('Max of a simple sequence', () => {

@@ -2,12 +2,31 @@ import asEnumerable from "../..";
 
 describe("aggregate", function() {
 
-  test('Sum', () => {
+  test('Sum sequence - no seed', () => {
+    const numbers = asEnumerable([3, 4, 5, 10]);
+    const sum = numbers.aggregate((acc, x) => acc + x);
+    expect(sum).toBe(22);
+  });
+
+  test('Sum single - no seed', () => {
+    const numbers = asEnumerable([13]);
+    const sum = numbers.aggregate((acc, x) => acc + x);
+    expect(sum).toBe(13);
+  });
+
+  test('Sum sequence - with seed', () => {
     const numbers = asEnumerable([1, 2, 3, 4, 5]);
     const sum = numbers.aggregate(0, (acc, x) => acc + x);
-
     expect(sum).toBe(15);
   });
+
+  test('Sum single - with seed', () => {
+    const numbers = asEnumerable([6]);
+    const sum = numbers.aggregate(3, (acc, x) => acc + x);
+
+    expect(sum).toBe(9);
+  });
+
 
   test('Sum as string (result selector)', () => {
     const numbers = asEnumerable([1, 2, 3, 4, 5]);

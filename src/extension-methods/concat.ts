@@ -6,7 +6,10 @@ declare module '../enumerable' {
   }
 }
 
-export function concat<TSource>(this: Enumerable<TSource>, second: Enumerable<TSource>): Enumerable<TSource> {
+export function concat<TSource>(
+  this: Enumerable<TSource>,
+  second: Enumerable<TSource>
+): Enumerable<TSource> {
   let self: Enumerable<TSource> | null = this;
   return new Enumerable(function*() {
     for (let item of self!) {

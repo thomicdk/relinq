@@ -2,11 +2,14 @@ import { Enumerable } from '../enumerable';
 
 declare module '../enumerable' {
   interface Enumerable<TSource> {
-    skipWhile(predicate: (item: TSource, idx?: number) => boolean): Enumerable<TSource>;
+    skipWhile(predicate: (item: TSource, idx: number) => boolean): Enumerable<TSource>;
   }
 }
 
-export function skipWhile<TSource>(this: Enumerable<TSource>, predicate: (item: TSource, idx?: number) => boolean) {
+export function skipWhile<TSource>(
+  this: Enumerable<TSource>, 
+  predicate: (item: TSource, idx: number) => boolean
+): Enumerable<TSource> {
   const self = this;
   return new Enumerable(function*() {
     const iterator = self[Symbol.iterator]();
@@ -14,7 +17,7 @@ export function skipWhile<TSource>(this: Enumerable<TSource>, predicate: (item: 
     let current: IteratorResult<TSource> = iterator.next();
     while (current.done === false) {
       if (!predicate(current.value, index)) {
-          break;
+        break;
       }
       current = iterator.next();
       index++;

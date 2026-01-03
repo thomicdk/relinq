@@ -1,17 +1,27 @@
 import asEnumerable from "../..";
 
 describe("selectMany", function() {
+  test('Flatten 2-dimensional array', () => {
+    const input = asEnumerable([
+      [17, 18, 19],
+      [20, 21, 22],
+      [23, 24, 25],
+      [26, 27, 28],
+    ]);
+    const query = input.selectMany(arr => arr);
+
+    expect(query).toGenerate([17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]);
+  });
 
   test('Flatten with projection and index', () => {
     const numbers = asEnumerable([3, 5, 20, 15]);
 
-    const query = numbers.selectMany((x, index: number) => (x + index).toString().split(""),
-                                   (x, c) => x + ": " + c);
-    // 3 => "3: 3"
-    // 5 => "5: 6"
-    // 20 => "20: 2", "20: 2"
-    // 15 => "15: 1", "15: 8"
-    expect(query).toGenerate(["3: 3", "5: 6", "20: 2", "20: 2", "15: 1", "15: 8"]);
+    const query = numbers.selectMany(
+      // TODO: Why are explicit type annotations required here?
+      (x: number, index: number) => new Array(index).fill(x, 0, index),
+      (x) => x.toString()
+    );
+    expect(query).toGenerate(["5", "20", "20", "15", "15", "15"]);
   });
 
 });

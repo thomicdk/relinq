@@ -3,7 +3,7 @@ import { Enumerable } from "../..";
 describe("union", function() {
 
   test('Empty first source', () => {
-    const first = Enumerable.from([]);
+    const first = Enumerable.from<number>([]);
     const second = Enumerable.from([2, 5, 9, 0, 5]);
     expect(first.union(second)).toGenerate([2, 5, 9, 0]);
   });

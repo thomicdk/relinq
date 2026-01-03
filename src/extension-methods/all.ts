@@ -6,7 +6,10 @@ declare module '../enumerable' {
   }
 }
 
-export function all<TSource>(this: Enumerable<TSource>, predicate: (item: TSource) => boolean): boolean {
+export function all<TSource>(
+  this: Enumerable<TSource>,
+  predicate: (item: TSource) => boolean
+): boolean {
   for (let item of this) {
     if (!predicate(item)) {
       return false;

@@ -4,7 +4,7 @@ describe("min", function() {
 
   test('Min of an empty sequence', () => {
     const empty = Enumerable.from([]);
-    expect(() => empty.min()).toThrowError("Sequence is empty");
+    expect(() => empty.min()).toThrow("Sequence is empty");
   });
 
   test('Min of a simple sequence', () => {

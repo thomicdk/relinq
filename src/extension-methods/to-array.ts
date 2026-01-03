@@ -6,7 +6,9 @@ declare module '../enumerable' {
   }
 }
 
-export function toArray<TSource>(this: Enumerable<TSource>): TSource[] {
+export function toArray<TSource>(
+  this: Enumerable<TSource>
+): TSource[] {
   return [...this];
 }
 

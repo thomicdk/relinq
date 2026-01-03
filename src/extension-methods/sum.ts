@@ -3,12 +3,23 @@ import { Enumerable } from "../enumerable";
 declare module '../enumerable' {
   interface Enumerable<TSource> {
     sum(): number;
-    sum(selector?: (item: TSource) => number): number;
+    sum(selector: (item: TSource) => number): number;
   }
 }
 
-export function sum<TSource extends number>(this: Enumerable<TSource>): number
-export function sum<TSource extends number>(this: Enumerable<TSource>, selector?: (item: TSource) => number): number {
+export function sum<TSource extends number>(
+  this: Enumerable<TSource>
+): number;
+
+export function sum<TSource extends number>(
+  this: Enumerable<TSource>,
+  selector: (item: TSource) => number
+): number;
+
+export function sum<TSource extends number>(
+  this: Enumerable<TSource>,
+  selector?: (item: TSource) => number
+): number {
   if (!selector) {
     selector = (item: any) => item;
   }

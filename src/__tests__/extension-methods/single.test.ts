@@ -4,7 +4,7 @@ describe("single", function() {
 
   test('Empty sequence without predicate', () => {
     const numbers = asEnumerable([]);
-    expect(() => numbers.single()).toThrowError("Sequence was empty");
+    expect(() => numbers.single()).toThrow("Sequence was empty");
   });
 
   test('Single element without predicate', () => {
@@ -14,12 +14,12 @@ describe("single", function() {
 
   test('Multiple elements without predicate', () => {
     const numbers = asEnumerable([4, 6, 2]);
-    expect(() => numbers.single()).toThrowError("Sequence contained multiple elements");
+    expect(() => numbers.single()).toThrow("Sequence contained multiple elements");
   });
 
   test('Empty sequence with predicate', () => {
     const numbers = asEnumerable([]);
-    expect(() => numbers.single(x => x > 5)).toThrowError("No items matched the predicate");
+    expect(() => numbers.single(x => x > 5)).toThrow("No items matched the predicate");
   });
 
   test('Single element with predicate matching', () => {
@@ -29,12 +29,12 @@ describe("single", function() {
 
   test('Single element with predicate not matching', () => {
     const numbers = asEnumerable([8]);
-    expect(() => numbers.single(x => x > 10)).toThrowError("No items matched the predicate");
+    expect(() => numbers.single(x => x > 10)).toThrow("No items matched the predicate");
   });
 
   test('Multiple elements with predicate matching 0 elements', () => {
     const numbers = asEnumerable([4, 6, 2]);
-    expect(() => numbers.single(x => x < 0)).toThrowError("No items matched the predicate");
+    expect(() => numbers.single(x => x < 0)).toThrow("No items matched the predicate");
   });
 
   test('Multiple elements with predicate matching 1 element', () => {
@@ -44,7 +44,7 @@ describe("single", function() {
 
   test('Multiple elements with predicate matching multiple elements', () => {
     const numbers = asEnumerable([2, 35, 1, 36, 21]);
-    expect(() => numbers.single(x => x > 10)).toThrowError("Sequence contained multiple matching elements");
+    expect(() => numbers.single(x => x > 10)).toThrow("Sequence contained multiple matching elements");
   });
 
   test('Lazy iteration without predicate', () => {
@@ -52,7 +52,7 @@ describe("single", function() {
 
     // If we proceed too far, we get:
     // TypeError: Cannot read property 'val' of undefined
-    expect(() => source.single()).toThrowError("Sequence contained multiple elements");
+    expect(() => source.single()).toThrow("Sequence contained multiple elements");
   });
 
   test('Lazy iteration with predicate', () => {
@@ -60,7 +60,7 @@ describe("single", function() {
 
     // If we proceed too far, we get:
     // TypeError: Cannot read property 'val' of undefined
-    expect(() => source.single(x => true)).toThrowError("Sequence contained multiple matching elements");
+    expect(() => source.single(x => true)).toThrow("Sequence contained multiple matching elements");
   });
 
 });

@@ -3,12 +3,23 @@ import { Enumerable } from "../enumerable";
 declare module '../enumerable' {
   interface Enumerable<TSource> {
     singleOrDefault(): TSource | undefined;
-    singleOrDefault(predicate?: (item: TSource) => boolean): TSource | undefined;
+    singleOrDefault(predicate: (item: TSource) => boolean): TSource | undefined;
   }
 }
 
-export function singleOrDefault<TSource>(this: Enumerable<TSource>): TSource | undefined
-export function singleOrDefault<TSource>(this: Enumerable<TSource>, predicate?: (item: TSource) => boolean): TSource | undefined {
+export function singleOrDefault<TSource>(
+  this: Enumerable<TSource>
+): TSource | undefined;
+
+export function singleOrDefault<TSource>(
+  this: Enumerable<TSource>,
+  predicate: (item: TSource) => boolean
+): TSource | undefined;
+
+export function singleOrDefault<TSource>(
+  this: Enumerable<TSource>,
+  predicate?: (item: TSource) => boolean
+): TSource | undefined {
   if (predicate) {
     let foundAny = false;
     let result: TSource | undefined = undefined;
