@@ -1,6 +1,6 @@
 node_modules
 src
-
+dist/__tests__
 .editorconfig
 .gitignore
 babel.config.json

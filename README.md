@@ -4,7 +4,7 @@
 
 * Familiar LINQ API 
 * Full type support
-* No dependencies
+* No runtime dependencies
 * Deferred execution
 
 ## How to use
