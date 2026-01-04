@@ -1,33 +1,47 @@
-import { createDeferredIterable, DeferredIterable } from "./deferred-iterable";
-
 export class Enumerable<TSource> implements Iterable<TSource>
 {
+
+  /** @internal */
+  get length() {
+    return this.isArray()
+      ? this.source.length
+      : -1
+  }
+
+  /** @internal */
+  isArray(): this is { source: Array<TSource> } {
+    return Array.isArray(this.source);
+  }
+
   /** @internal */
   constructor(
     /** @internal */
-    protected readonly deferredIterable: DeferredIterable<TSource>
+    public readonly source: Iterable<TSource> | (() => Generator<TSource>)
   ) { }
 
-  [Symbol.iterator](): IterableIterator<TSource> {
-    return this.deferredIterable();
+  *[Symbol.iterator]() {
+    const iterable = typeof this.source === "function"
+      ? this.source()
+      : this.source;
+
+    yield* iterable;
   }
 
   /** @internal */
   toJSON() {
-    return [...this.deferredIterable()];
+    return [...this];
   }
 
   toString() {
     return 'Enumerable';
   }
 
-  static from<T>(source: Iterable<T>): Enumerable<T> {
-    const deferredIterable = createDeferredIterable(source);
-    return new Enumerable<T>(deferredIterable);
+  static from<TSource>(source: Iterable<TSource> | (() => Generator<TSource>)): Enumerable<TSource> {
+    return new Enumerable<TSource>(source);
   }
 
   static empty<TSource>(): Enumerable<TSource> {
-    return new Enumerable(function*() { });
+    return new Enumerable([]);
   }
 
   static range(start: number, count: number): Enumerable<number> {

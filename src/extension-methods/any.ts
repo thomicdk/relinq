@@ -28,6 +28,9 @@ export function any<TSource>(
     }
     return false;
   } else {
+    if (this.length >= 0) {
+      return this.length > 0;
+    }
     return !this[Symbol.iterator]().next().done;
   }
 }

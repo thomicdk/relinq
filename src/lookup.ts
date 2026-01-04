@@ -1,4 +1,3 @@
-import { createDeferredIterable } from "./deferred-iterable";
 import { Enumerable } from './enumerable';
 import { Grouping } from './grouping';
 
@@ -10,7 +9,7 @@ export class Lookup<TKey, TElement> extends Enumerable<Grouping<TKey, TElement>>
 
   /** @internal */
   constructor() {
-    super(function* () { });
+    super(() => this.generateGroupings());
     this.map = new Map();
     this.keys = [];
   }
@@ -32,7 +31,7 @@ export class Lookup<TKey, TElement> extends Enumerable<Grouping<TKey, TElement>>
   get(key: TKey): Enumerable<TElement> {
     const sKey = this.serializeKey(key);
     return this.map.has(sKey)
-      ? new Enumerable<TElement>(createDeferredIterable(this.map.get(sKey)!))
+      ? new Enumerable<TElement>(this.map.get(sKey)!)
       : Enumerable.empty<TElement>();
   }
 
@@ -45,17 +44,16 @@ export class Lookup<TKey, TElement> extends Enumerable<Grouping<TKey, TElement>>
     return this.map.has(sKey);
   }
 
-  [Symbol.iterator](): IterableIterator<Grouping<TKey, TElement>> {
-    const self = this;
-    let i = 0;
+  /** @internal */
+  private *generateGroupings(): Generator<Grouping<TKey, TElement>> {
+    for (const sKey of this.keys) {
+      const elements = new Enumerable(this.map.get(sKey)!);
+      yield new Grouping(this.deserializeKey(sKey), elements);
+    }
+  }
 
-    return function* () {
-      while (i < self.keys.length) {
-        const sKey = self.keys[i++];
-        const elements = createDeferredIterable<TElement>(self.map.get(sKey)!);
-        yield new Grouping(self.deserializeKey(sKey), elements);
-      }
-    }();
+  *[Symbol.iterator](): Generator<Grouping<TKey, TElement>> {
+    yield* this.generateGroupings();
   }
 
   toString() {
@@ -66,7 +64,6 @@ export class Lookup<TKey, TElement> extends Enumerable<Grouping<TKey, TElement>>
   private serializeKey(key: TKey): string {
     return JSON.stringify(key);
   }
-
 
   /** @internal */
   private deserializeKey(key: string): TKey {

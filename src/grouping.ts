@@ -1,4 +1,3 @@
-import { DeferredIterable } from "./deferred-iterable";
 import { Enumerable } from './enumerable';
 
 export class Grouping<TKey, TElement> extends Enumerable<TElement> {
@@ -7,7 +6,7 @@ export class Grouping<TKey, TElement> extends Enumerable<TElement> {
   private readonly _key: TKey;
 
   /** @internal */
-  constructor(key: TKey, elements: DeferredIterable<TElement>) {
+  constructor(key: TKey, elements: Enumerable<TElement>) {
     super(elements);
     this._key = key;
   }
