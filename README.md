@@ -2,7 +2,7 @@
 
 ## Feature highlights
 
-* Familiar LINQ API 
+* Familiar API from C# LINQ
 * Full type support
 * No runtime dependencies
 * Deferred execution
@@ -39,6 +39,8 @@ Enumerable
 * `.count()`
 * `.distinct()`
 * `.except()`
+* `.elementAt()`
+* `.elementAtOrDefault()`
 * `.first()`
 * `.firstOrDefault()`
 * `.groupBy()`
@@ -48,9 +50,11 @@ Enumerable
 * `.max()`
 * `.min()`
 * `.orderBy()`
+* `.orderByDescending()`
 * `.reverse()`
 * `.select()`
 * `.selectMany()`
+* `.sequenceEqual()`
 * `.single()`
 * `.singleOrDefault()`
 * `.skip()`
@@ -63,6 +67,7 @@ Enumerable
 * `.toLookup()`
 * `.union()`
 * `.where()`
+* `.zip()`
 
 ### Static
 
@@ -70,3 +75,39 @@ Enumerable
 * `Enumerable.from()`
 * `Enumerable.range()`
 * `Enumerable.repeat()`
+
+
+## Roadmap
+
+*Updated January 2026*
+
+* Implement missing methods from .NET 10 ([`System.Linq.Enumerable`](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable?view=net-10.0#methods)):
+
+  * AggregateBy
+  * Append
+  * Average
+  * Chunk
+  * Contains
+  * CountBy
+  * DistinctBy
+  * ExceptBy
+  * GroupJoin
+  * Index
+  * InfiniteSequence
+  * IntersectBy
+  * Join
+  * LeftJoin
+  * MaxBy
+  * MinBy
+  * Order
+  * OrderDescending
+  * Prepend
+  * RightJoin
+  * Sequence
+  * Shuffle
+  * SkipLast
+  * ToHashSet
+  * UnionBy
+* Implement custom HashSet class with `IEqualityComparer<T>`-like support, which will enable new overloads for various LINQ methods to allow a custom comparer to be passed as argument. 
+* Expand `DeferredIterable` beyond a simple function: It should be aware of the type of iterable it's holding. That will allow optimizations for Arrays where the `length` property can be used to optimize various LINQ methods, e.g. `.count()` and `.elementAt()`.
+* CI/CD pipeline with Github Actions
