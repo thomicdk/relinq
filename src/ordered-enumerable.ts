@@ -1,4 +1,3 @@
-import { DeferredIterable } from "./deferred-iterable";
 import { Enumerable } from './enumerable';
 import { IComparer, CompoundComparer, defaultComparerFactory, ProjectionComparer, ReverseComparer } from './comparer';
 
@@ -6,10 +5,10 @@ export class OrderedEnumerable<TElement> extends Enumerable<TElement> {
 
   /** @internal */
   constructor(
-    generatorFactory: DeferredIterable<TElement>,
+    source: Iterable<TElement> | (() => Generator<TElement>),
     /** @internal */
     private readonly comparer: IComparer<TElement>) {
-    super(generatorFactory);
+    super(source);
   }
 
   /** @internal */
@@ -19,14 +18,14 @@ export class OrderedEnumerable<TElement> extends Enumerable<TElement> {
         secondaryComparer = new ReverseComparer<TElement>(secondaryComparer);
     }
 
-    const orderedEnumerable = new OrderedEnumerable<TElement>(this.deferredIterable, new CompoundComparer<TElement>(this.comparer, secondaryComparer));
+    const orderedEnumerable = new OrderedEnumerable<TElement>(this.source, new CompoundComparer<TElement>(this.comparer, secondaryComparer));
     return orderedEnumerable;
   }
 
-  [Symbol.iterator]() {
-    const array = [...this.deferredIterable()];
+  *[Symbol.iterator]() {
+    const array = [...super[Symbol.iterator]()];
     array.sort((x, y) => this.comparer.compare(x,y));
-    return array[Symbol.iterator]();
+    yield* array;
   }
 
   thenBy<TKey>(keySelector: (item: TElement) => TKey, comparer?: IComparer<TKey>): OrderedEnumerable<TElement> {

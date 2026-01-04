@@ -2,6 +2,12 @@ import { Enumerable } from "../";
 
  describe("Enumerable", function() {
 
+  describe("is iterable", () => {
+      const e = Enumerable.from([1, 2, 3]);
+      const result = [...e];
+      expect(result).toEqual([1, 2, 3]);
+  });
+
   describe("empty()", () => {
       const actual = Enumerable.empty<number>();
       const expected: string[] = [];

@@ -8,6 +8,14 @@ describe("count", function() {
     expect(actual).toBe(3);
   });
 
+  test('Count is lazy', () => {
+    const bareNumbers = ["34", "10", "3"];
+    const enumerable = asEnumerable(bareNumbers);
+    bareNumbers.push("45");
+    bareNumbers.push("99");
+    expect(enumerable.count()).toBe(5);
+  });
+
   test('Count with predicate', () => {
     const numbers = asEnumerable([34, 10, 3, 6, 1]);
     const actual = numbers.count(x => x > 9);

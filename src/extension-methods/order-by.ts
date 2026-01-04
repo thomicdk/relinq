@@ -1,6 +1,5 @@
 import { Enumerable } from "../enumerable";
 import { OrderedEnumerable } from "../ordered-enumerable";
-import { createDeferredIterable } from "../deferred-iterable";
 import { IComparer, defaultComparerFactory, ProjectionComparer, ReverseComparer } from "../comparer";
 
 declare module '../enumerable' {
@@ -11,7 +10,7 @@ declare module '../enumerable' {
 }
 
 export function orderBy<TSource, TKey>(
-  this: Enumerable<TSource>, 
+  this: Enumerable<TSource>,
   keySelector: (item: TSource) => TKey
 ): OrderedEnumerable<TSource>;
 
@@ -30,7 +29,7 @@ export function orderBy<TSource, TKey>(
     comparer = defaultComparerFactory(false);
   }
   const orderedEnumerable = new OrderedEnumerable<TSource>(
-    createDeferredIterable(this),
+    this,
     new ProjectionComparer<TSource, TKey>(keySelector, comparer)
   );
   return orderedEnumerable;

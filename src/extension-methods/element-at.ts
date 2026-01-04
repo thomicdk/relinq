@@ -30,6 +30,12 @@ export function tryElementAt<TSource>(
     throw new Error("Index out of range");
   }
 
+  if (source.isArray()) {
+    return source.source.length > index
+      ? [true, source.source[index]]
+      : [false, undefined];
+  }
+
   const iterator = source[Symbol.iterator]();
   let item;
   for (let i = -1; i < index; i++) {
