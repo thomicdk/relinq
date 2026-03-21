@@ -44,6 +44,16 @@ export class Enumerable<TSource> implements Iterable<TSource>
     return new Enumerable([]);
   }
 
+  static infiniteSequence(start: number, step: number): Enumerable<number> {
+    return new Enumerable(function*() {
+      let current = start;
+      while (true) {
+        yield current;
+        current += step;
+      }
+    });
+  }
+
   static range(start: number, count: number): Enumerable<number> {
     return new Enumerable(function*() {
       for (let i = 0; i < count; i++) {
