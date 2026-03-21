@@ -14,6 +14,40 @@ import { Enumerable } from "../";
       expect(actual).toGenerate(expected);
   });
 
+  describe("infiniteSequence()", function() {
+
+    test('Integers from zero with step 1', () => {
+      const result = Enumerable.infiniteSequence(0, 1).take(5).toArray();
+      expect(result).toEqual([0, 1, 2, 3, 4]);
+    });
+
+    test('Integers from non-zero start', () => {
+      const result = Enumerable.infiniteSequence(5, 1).take(4).toArray();
+      expect(result).toEqual([5, 6, 7, 8]);
+    });
+
+    test('Step greater than 1', () => {
+      const result = Enumerable.infiniteSequence(0, 2).take(5).toArray();
+      expect(result).toEqual([0, 2, 4, 6, 8]);
+    });
+
+    test('Negative step', () => {
+      const result = Enumerable.infiniteSequence(10, -1).take(4).toArray();
+      expect(result).toEqual([10, 9, 8, 7]);
+    });
+
+    test('Decimal step', () => {
+      const result = Enumerable.infiniteSequence(1, 0.5).take(4).toArray();
+      expect(result).toEqual([1, 1.5, 2, 2.5]);
+    });
+
+    test('Can be iterated multiple times', () => {
+      const seq = Enumerable.infiniteSequence(0, 1).take(3);
+      expect(seq.toArray()).toEqual([0, 1, 2]);
+      expect(seq.toArray()).toEqual([0, 1, 2]);
+    });
+  });
+
   describe("range()", () => {
 
     test('Simple range', () => {

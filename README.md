@@ -74,6 +74,7 @@ Enumerable
 
 * `Enumerable.empty()`
 * `Enumerable.from()`
+* `Enumerable.infiniteSequence()`
 * `Enumerable.range()`
 * `Enumerable.repeat()`
 
@@ -93,7 +94,6 @@ Enumerable
   * ExceptBy
   * GroupJoin
   * Index
-  * InfiniteSequence
   * IntersectBy
   * Join
   * LeftJoin
