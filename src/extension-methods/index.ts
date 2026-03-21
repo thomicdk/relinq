@@ -1,6 +1,7 @@
 import './aggregate';
 import './all';
 import './any';
+import './average';
 import './concat';
 import './count';
 import './distinct';

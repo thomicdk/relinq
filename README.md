@@ -35,6 +35,7 @@ Enumerable
 * `.aggregate()`
 * `.all()`
 * `.any()`
+* `.average()`
 * `.concat()`
 * `.count()`
 * `.distinct()`
@@ -85,7 +86,6 @@ Enumerable
 
   * AggregateBy
   * Append
-  * Average
   * Chunk
   * Contains
   * CountBy
@@ -109,5 +109,4 @@ Enumerable
   * ToHashSet
   * UnionBy
 * Implement custom HashSet class with `IEqualityComparer<T>`-like support, which will enable new overloads for various LINQ methods to allow a custom comparer to be passed as argument. 
-* Expand `DeferredIterable` beyond a simple function: It should be aware of the type of iterable it's holding. That will allow optimizations for Arrays where the `length` property can be used to optimize various LINQ methods, e.g. `.count()` and `.elementAt()`.
 * CI/CD pipeline with Github Actions
