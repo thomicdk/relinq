@@ -108,5 +108,4 @@ Enumerable
   * SkipLast
   * ToHashSet
   * UnionBy
-* Implement custom HashSet class with `IEqualityComparer<T>`-like support, which will enable new overloads for various LINQ methods to allow a custom comparer to be passed as argument. 
-* CI/CD pipeline with Github Actions
+* Implement custom HashSet class with `IEqualityComparer<T>`-like support, which will enable new overloads for various LINQ methods to allow a custom comparer to be passed as argument.
